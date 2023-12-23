@@ -1,0 +1,35 @@
+.slide-right {
+    animation: 3s slide-right;
+}
+.container-new{
+        background-color: #E1E1E1;
+        border-radius: 20px;
+}
+
+.container-second{
+    padding-top: 20px;
+    padding-left: 20px;
+}
+@keyframes slide-right {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 40vw;
+    }
+}
+
+.slide-left {
+    animation: 3s slide-left;
+  }
+  @keyframes slide-left {
+    from {
+        width: 40vw;
+    }
+    to {
+        width: 0;
+        padding-left: 0;
+    }
+  }
+  
