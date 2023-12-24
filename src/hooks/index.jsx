@@ -13,5 +13,13 @@ export const useStorage = () => ({
         } catch (error) {
             return error
         }
+    },
+    setTask: (nome, data, tarefa)=>{
+        const task = {
+            nome: nome,
+            data: data,
+            tarefas: tarefa
+        }
+        localStorage.setItem("task", task)
     }
 })

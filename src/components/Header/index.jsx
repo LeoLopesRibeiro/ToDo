@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 
 export default function Header() {
     const today = new Date()
-    const dia = today.getDay()
+    const dia = today.getDate()
     const meses = today.getMonth() + 1
     const ano = today.getFullYear()
     let mes = ""
@@ -47,10 +47,8 @@ export default function Header() {
             mes = "Dezembro"
             break;
     }
-    console.log(mes)
 
     const { theme, toggle } = useContext(ThemeContext)
-    console.log(theme)
     return (
         <>
             <div className="container-principal">

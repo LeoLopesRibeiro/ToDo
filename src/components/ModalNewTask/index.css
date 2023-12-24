@@ -1,14 +1,15 @@
-.slide-right {
+.slide-right.active {
     animation: 3s slide-right;
 }
 .container-new{
         background-color: #E1E1E1;
         border-radius: 20px;
+        height: 85vh;
 }
-
 .container-second{
-    padding-top: 20px;
-    padding-left: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 @keyframes slide-right {
     from {
@@ -20,7 +21,7 @@
     }
 }
 
-.slide-left {
+.slide-left.active {
     animation: 3s slide-left;
   }
   @keyframes slide-left {

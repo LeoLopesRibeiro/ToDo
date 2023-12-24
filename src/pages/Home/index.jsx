@@ -5,12 +5,12 @@ import './index.css'
 import Modal from "../../components/ModalNewTask";
 export default function Home() {
     const [modal, setModal] = useState(false)
-    
-    console.log(modal)
+    const [active, setActive] = useState("inactive")
+    // console.log(modal)
     return (
         <div className="container-home">
-            <Modal style={modal ? "slide-right" : "slide-left"} modal={modal}/>
-            <div onClick={() => setModal(!modal)}>
+            <Modal style={modal ? `slide-right ${active}` : `slide-left ${active}`}/>
+            <div className="click" onClick={() => {setModal(!modal), setActive("active")}}>
                 <NewTask />
             </div>
         </div>
