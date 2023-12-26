@@ -1,36 +1,71 @@
 .slide-right.active {
     animation: 3s slide-right;
 }
-.container-new{
-        background-color: #E1E1E1;
-        border-radius: 20px;
-        height: 85vh;
+
+.container-new {
+    background-color: #E1E1E1;
+    border-radius: 20px;
 }
-.container-second{
+
+.container-second {
     padding: 20px;
     display: flex;
     flex-direction: column;
 }
+
 @keyframes slide-right {
     from {
         width: 0;
+        height: 85vh;
     }
 
     to {
         width: 40vw;
+        height: 85vh;
     }
 }
 
 .slide-left.active {
     animation: 3s slide-left;
-  }
-  @keyframes slide-left {
+}
+
+@keyframes slide-left {
     from {
         width: 40vw;
+        height: 85vh;
     }
+
     to {
         width: 0;
+        height: 85vh;
         padding-left: 0;
     }
-  }
-  
+}
+
+@media (max-width: 600px) {
+    @keyframes slide-right {
+        from {
+            width: 0;
+            height: 85vh;
+        }
+
+        to {
+            width: 100vw;
+            height: 85vh;
+        }
+    }
+
+    @keyframes slide-left {
+        from {
+            width: 100vw;
+            height: 85vh;
+        }
+
+        to {
+            width: 0;
+            height: 85vh;
+            padding-left: 0;
+        }
+    }
+
+}

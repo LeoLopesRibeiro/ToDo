@@ -3,14 +3,28 @@ import "./index.css"
 import { useState } from 'react'
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import moment from 'moment';
+import { useStorage } from '../../hooks';
+
 export default function Modal({ style, modal }) {
+    const storage = useStorage()
     const [listName, setListName] = useState("")
     const [tarefas, setTarefas] = useState([""])
     const [calendar, setCalendar] = useState(new Date())
     const [input, setInput] = useState([])
+    let styles
 
-
-    console.log(calendar)
+    if (screen.width > 600) {
+        styles = {
+            width: style == "slide-right active" ? "40vw" : 0,
+            height: style == "slide-right active" ? "85vh" : 0
+        }
+    } else {
+        styles = {
+            width: style == "slide-right active" ? "100vw" : 0,
+            height: style == "slide-right active" ? "85vh" : 0
+        }
+    }
     function handleAdd() {
         const newInput = [...input, []]
         setInput(newInput)
@@ -28,13 +42,19 @@ export default function Modal({ style, modal }) {
         deleteInput.splice(id, 1)
         setInput(deleteInput)
     }
+
+    function handleClick(){
+        storage.setTask(listName, calendar, tarefas)
+    }
+    console.log(localStorage.getItem("task"))
     return (
-        <div className={`${style} container-new`} style={{ width: style == "slide-right active" ? "40vw" : 0 }}>
+        <div
+            className={`${style} container-new`} style={styles}>
             <div className='container-second'>
                 <label>Nome da Lista
                 </label>
-                    <input onChange={(e) => setListName(e.target.value)}></input>
-                    <Calendar  onChange={setCalendar} value={calendar} />
+                <input onChange={(e) => setListName(e.target.value)}></input>
+                <Calendar minDate={new Date()} onChange={(e) => setCalendar(moment(e).format("DD/MM/YYYY"))} value={calendar} />
                 <label>Tarefas</label>
                 {input.map((data, id) => {
                     return (
@@ -45,6 +65,7 @@ export default function Modal({ style, modal }) {
                     )
                 })}
                 <button onClick={handleAdd}>Adicionar tarefa</button>
+                <button onClick={handleClick}>Criar Lista</button>
             </div>
         </div>
 

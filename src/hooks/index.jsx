@@ -20,6 +20,16 @@ export const useStorage = () => ({
             data: data,
             tarefas: tarefa
         }
-        localStorage.setItem("task", task)
+        let newTask
+        let taskLocal = localStorage.getItem("task")
+        if(taskLocal == null){
+            newTask = `${JSON.stringify(task)}`
+        }else{
+            newTask = `${taskLocal}, ${JSON.stringify(task)}`
+        }
+        
+
+        
+        localStorage.setItem("task", newTask)
     }
 })
