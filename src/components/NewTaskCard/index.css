@@ -8,6 +8,8 @@
     background-color: var(--blue);
     border-radius: 20px;
     cursor: pointer;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 .container-round{
     width: 75px;
