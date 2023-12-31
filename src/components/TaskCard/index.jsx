@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.css";
 export default function TaskCard(data) {
   const navigate = useNavigate();
-  const task = JSON.parse(data.data);
+  const task = data.data;
 
   function navigation() {
     navigate("/list", {
