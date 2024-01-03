@@ -58,17 +58,22 @@ export const useStorage = () => ({
     const index = formated.indexOf(filter[0]);
     formated.splice(index, 1);
     formated.push(taskEdited);
-    console.log(formated, "formatado")
+    console.log(formated, "formatado");
 
     localStorage.setItem("task", JSON.stringify(formated));
-    return window.location.reload();
+    return window.location.assign("/");
   },
   deleteTask: (nome) => {
     const formated = JSON.parse(localStorage.getItem("task"));
     const filter = formated.filter((nomeLista) => nomeLista.nome === nome);
     const index = formated.indexOf(filter[0]);
     formated.splice(index, 1);
-    console.log(formated, "formatado")
-
+    console.log(formated, "formatado");
+  },
+  searchOneTask: ({nome}) => {
+    const formated = JSON.parse(localStorage.getItem("task"));
+    const filter = formated.filter((nomeLista) => nomeLista.nome === nome);
+  //  console.log(filter)
+   return filter
   },
 });

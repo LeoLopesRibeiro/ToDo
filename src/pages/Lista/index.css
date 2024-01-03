@@ -2,3 +2,9 @@
     height: 85vh;
     width: 100vw;
 }
+.teste{
+    color: black;
+}
+.tarefaCompleta{
+    text-decoration: line-through;
+}

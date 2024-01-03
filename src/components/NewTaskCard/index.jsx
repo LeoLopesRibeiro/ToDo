@@ -10,7 +10,7 @@ export default function NewTask() {
                 </div>
             </div>
                 <div className="container-down">
-                    <p id="nova">Nova Tarefa</p>
+                    <p id="nova">Nova Lista</p>
                 </div>
         </div>
     )
