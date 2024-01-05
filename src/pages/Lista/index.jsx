@@ -1,4 +1,4 @@
-export default function List(){
+export default function Lista(){
   return(
     <div>
       <p>Nada</p>
