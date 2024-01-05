@@ -1,9 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Header from "../components/Header";
 import Lista from "../pages/Lista/index.jsx";
 
-const routes = createBrowserRouter([
+const routes = createHashRouter([
     {
         element: <Header />,
         children: [
