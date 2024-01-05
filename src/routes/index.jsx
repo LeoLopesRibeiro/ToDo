@@ -12,7 +12,7 @@ const routes = createHashRouter([
                 element: <Home />
             },
             {
-                path: "/lista",
+                path: "/list",
                 element: <Lista/>
             }
         ]

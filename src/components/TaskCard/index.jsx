@@ -6,7 +6,7 @@ export default function TaskCard(data) {
   const task = data.data;
 
   function navigation() {
-    navigate("/lista", {
+    navigate("/list", {
         state: data,
       });
   }
