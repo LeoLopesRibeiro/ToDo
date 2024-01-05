@@ -7,12 +7,12 @@ export default function List() {
   const storage = useStorage();
   const { state } = useLocation();
   //eslint-disable-next-line
-  const [task, setTask] = useState(storage.searchOneTask(state.data.nome));
+  const [task, setTask] = useState(state.data);
   const [newTask, setNewTasks] = useState([]);
   const [taskExisted, setTaskExisted] = useState(task.tarefas);
   const [inputEdit, setInputEdit] = useState(true);
 
-  
+  console.log(state.data)
   let count = 0;
   task.tarefas.forEach((dados) => {
     if (dados.includes("%")) {
