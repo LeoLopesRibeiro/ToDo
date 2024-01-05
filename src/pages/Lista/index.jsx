@@ -6,18 +6,24 @@ import "./index.css";
 export default function List() {
   const storage = useStorage();
   const { state } = useLocation();
-  const [task, setTask] = useState(state.data);
+  //eslint-disable-next-line
+  const [task, setTask] = useState(storage.searchOneTask(state.data.nome));
   const [newTask, setNewTasks] = useState([]);
   const [taskExisted, setTaskExisted] = useState(task.tarefas);
   const [inputEdit, setInputEdit] = useState(true);
-  // console.log(state.data)
+
+  let count = 0;
+  task.tarefas.forEach((dados) => {
+    if (dados.includes("%")) {
+      count++;
+    }
+  });
   function handleChangeExisted(data, id) {
     const inputValue = [...taskExisted];
     inputValue[id] = data;
     let value = inputValue;
     setTaskExisted(value);
   }
-  //   console.log(taskExisted)
 
   function edit() {
     if (newTask.length > 0) {
@@ -39,7 +45,6 @@ export default function List() {
     }
     setTaskExisted(tasksLocal);
   }
-  console.log(taskExisted);
 
   function handleChange(data, id) {
     const inputValue = [...newTask];
@@ -60,56 +65,68 @@ export default function List() {
 
   return (
     <div className="container-list">
-      <p>{task.nome}</p>
-      <button onClick={edit}>clica</button>
-      {task.tarefas != null
-        ? task.tarefas.map((data, id) => {
-            // console.log(data);
-            return (
-              <div key={id}>
-                {data.includes("%") ? (
-                  <p className="tarefaCompleta">{data.replace("%", "")}</p>
-                ) : (
-                  <>
-                    <label className="teste">
+      <div className="container-list-name">
+        <h2 className="name">{task.nome}</h2>
+        <p className="numberTasks">
+          {count}/{task.tarefas.length} Completas
+        </p>
+      </div>
+      <div className="container-content">
+        {task.tarefas != null
+          ? task.tarefas.map((data, id) => {
+              return (
+                <div key={id} className="tarefas-map">
+                  {data.includes("%") ? (
+                    <p className="tarefaCompleta">{data.replace("%", "")}</p>
+                  ) : (
+                    <div className="container-inputs">
+                      <div className="checkbox-wrapper-13" style={{}}>
+                        <input onChange={() => tarefaCompleta(id)} type="checkbox" />
+                      </div>
                       <input
-                        type="checkbox"
-                        onChange={() => tarefaCompleta(id)}
-                      />
-                    </label>
-                    <input
-                      placeholder={data}
-                      onChange={(e) => {
-                        handleChangeExisted(e.target.value, id);
-                      }}
-                      style={{ color: "#000" }}
-                      disabled={inputEdit}
-                    ></input>
-                    <button onClick={() => setInputEdit(!inputEdit)}>
-                      editar
-                    </button>
-                  </>
-                )}
-              </div>
-            );
-          })
-        : null}
-      {newTask.map((data, id) => {
-        return (
-          <div className="over" key={id}>
-            <input
-              // className="inputs"
-              onChange={(e) => handleChange(e.target.value, id)}
-            ></input>
-            <button className="remove" onClick={handleDelete}>
-              -
-            </button>
-          </div>
-        );
-      })}
-      <button className="button-add" onClick={handleAdd}>
-        Adicionar tarefa
-      </button>
+                        className="input-lista"
+                        placeholder={data}
+                        onChange={(e) => {
+                          handleChangeExisted(e.target.value, id);
+                        }}
+                        style={{ color: "#000" }}
+                        disabled={inputEdit}
+                      ></input>
+                      <button
+                        className="edit"
+                        onClick={() => setInputEdit(!inputEdit)}
+                      >
+                        editar
+                      </button>
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          : null}
+        {newTask.map((data, id) => {
+          return (
+            <div className="over" key={id}>
+              <input
+                className="input-lista"
+                onChange={(e) => handleChange(e.target.value, id)}
+              ></input>
+              <button className="remove" onClick={handleDelete}>
+                -
+              </button>
+            </div>
+          );
+        })}
+        <div className="buttons">
+          <button className="" onClick={handleAdd}>
+            Adicionar tarefa
+          </button>
+
+          <button className="" onClick={edit}>
+            Editar Lista
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

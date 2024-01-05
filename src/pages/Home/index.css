@@ -21,10 +21,16 @@
    height: min-content;
    overflow-y: scroll;
    margin-bottom: 15vh;
+   gap: 20px;
 }
 
 @media (max-width: 600px) {
     .container-home{
         flex-direction: column;
+    }
+    .responsive{
+        gap: 10px;
+       align-items: center;
+       justify-content: center;
     }
 }

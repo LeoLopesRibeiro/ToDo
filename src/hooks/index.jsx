@@ -61,7 +61,7 @@ export const useStorage = () => ({
     console.log(formated, "formatado");
 
     localStorage.setItem("task", JSON.stringify(formated));
-    return window.location.assign("/");
+    return window.location.reload();
   },
   deleteTask: (nome) => {
     const formated = JSON.parse(localStorage.getItem("task"));
@@ -70,10 +70,10 @@ export const useStorage = () => ({
     formated.splice(index, 1);
     console.log(formated, "formatado");
   },
-  searchOneTask: ({nome}) => {
+  searchOneTask: (nome) => {
     const formated = JSON.parse(localStorage.getItem("task"));
     const filter = formated.filter((nomeLista) => nomeLista.nome === nome);
-  //  console.log(filter)
-   return filter
+  //  console.log(nome, "filter")
+   return filter[0]
   },
 });
