@@ -7,12 +7,11 @@ export default function List() {
   const storage = useStorage();
   const { state } = useLocation();
   //eslint-disable-next-line
-  const [task, setTask] = useState(state.data);
+  const [task, setTask] = useState(storage.searchOneTask(state.data.nome));
   const [newTask, setNewTasks] = useState([]);
   const [taskExisted, setTaskExisted] = useState(task.tarefas);
   const [inputEdit, setInputEdit] = useState(true);
 
-  console.log(state.data)
   let count = 0;
   task.tarefas.forEach((dados) => {
     if (dados.includes("%")) {
@@ -65,69 +64,70 @@ export default function List() {
   }
 
   return (
-    <div className="container-list">
-      <div className="container-list-name">
-        <h2 className="name">{task.nome}</h2>
-        <p className="numberTasks">
-          {count}/{task.tarefas.length} Completas
-        </p>
-      </div>
-      <div className="container-content">
-        {task.tarefas != null
-          ? task.tarefas.map((data, id) => {
-              return (
-                <div key={id} className="tarefas-map">
-                  {data.includes("%") ? (
-                    <p className="tarefaCompleta">{data.replace("%", "")}</p>
-                  ) : (
-                    <div className="container-inputs">
-                      <div className="checkbox-wrapper-13" style={{}}>
-                        <input onChange={() => tarefaCompleta(id)} type="checkbox" />
-                      </div>
-                      <input
-                        className="input-lista"
-                        placeholder={data}
-                        onChange={(e) => {
-                          handleChangeExisted(e.target.value, id);
-                        }}
-                        style={{ color: "#000" }}
-                        disabled={inputEdit}
-                      ></input>
-                      <button
-                        className="edit"
-                        onClick={() => setInputEdit(!inputEdit)}
-                      >
-                        editar
-                      </button>
-                    </div>
-                  )}
-                </div>
-              );
-            })
-          : null}
-        {newTask.map((data, id) => {
-          return (
-            <div className="over" key={id}>
-              <input
-                className="input-lista"
-                onChange={(e) => handleChange(e.target.value, id)}
-              ></input>
-              <button className="remove" onClick={handleDelete}>
-                -
-              </button>
-            </div>
-          );
-        })}
-        <div className="buttons">
-          <button className="" onClick={handleAdd}>
-            Adicionar tarefa
-          </button>
+    <div><p>Nada</p></div>
+    // <div className="container-list">
+    //   <div className="container-list-name">
+    //     <h2 className="name">{task.nome}</h2>
+    //     <p className="numberTasks">
+    //       {count}/{task.tarefas.length} Completas
+    //     </p>
+    //   </div>
+    //   <div className="container-content">
+    //     {task.tarefas != null
+    //       ? task.tarefas.map((data, id) => {
+    //           return (
+    //             <div key={id} className="tarefas-map">
+    //               {data.includes("%") ? (
+    //                 <p className="tarefaCompleta">{data.replace("%", "")}</p>
+    //               ) : (
+    //                 <div className="container-inputs">
+    //                   <div className="checkbox-wrapper-13" style={{}}>
+    //                     <input onChange={() => tarefaCompleta(id)} type="checkbox" />
+    //                   </div>
+    //                   <input
+    //                     className="input-lista"
+    //                     placeholder={data}
+    //                     onChange={(e) => {
+    //                       handleChangeExisted(e.target.value, id);
+    //                     }}
+    //                     style={{ color: "#000" }}
+    //                     disabled={inputEdit}
+    //                   ></input>
+    //                   <button
+    //                     className="edit"
+    //                     onClick={() => setInputEdit(!inputEdit)}
+    //                   >
+    //                     editar
+    //                   </button>
+    //                 </div>
+    //               )}
+    //             </div>
+    //           );
+    //         })
+    //       : null}
+    //     {newTask.map((data, id) => {
+    //       return (
+    //         <div className="over" key={id}>
+    //           <input
+    //             className="input-lista"
+    //             onChange={(e) => handleChange(e.target.value, id)}
+    //           ></input>
+    //           <button className="remove" onClick={handleDelete}>
+    //             -
+    //           </button>
+    //         </div>
+    //       );
+    //     })}
+    //     <div className="buttons">
+    //       <button className="" onClick={handleAdd}>
+    //         Adicionar tarefa
+    //       </button>
 
-          <button className="" onClick={edit}>
-            Editar Lista
-          </button>
-        </div>
-      </div>
-    </div>
+    //       <button className="" onClick={edit}>
+    //         Editar Lista
+    //       </button>
+    //     </div>
+    //   </div>
+    // </div>
   );
 }
