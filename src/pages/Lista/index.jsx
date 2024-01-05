@@ -12,12 +12,13 @@ export default function List() {
   const [taskExisted, setTaskExisted] = useState(task.tarefas);
   const [inputEdit, setInputEdit] = useState(true);
 
+
   let count = 0;
-  task.tarefas.forEach((dados) => {
-    if (dados.includes("%")) {
-      count++;
-    }
-  });
+  // task.tarefas.forEach((dados) => {
+  //   if (dados.includes("%")) {
+  //     count++;
+  //   }
+  // });
   function handleChangeExisted(data, id) {
     const inputValue = [...taskExisted];
     inputValue[id] = data;
