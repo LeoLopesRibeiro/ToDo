@@ -5,6 +5,8 @@ import Calendar from "react-calendar";
 import "./calendar.css";
 import moment from "moment";
 import { useStorage } from "../../hooks";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 //eslint-disable-next-line
 export default function Modal({ style, modal }) {
   const storage = useStorage();
@@ -47,10 +49,21 @@ export default function Modal({ style, modal }) {
   }
 
   function handleClick() {
-    storage.setTask(listName, calendar, tarefas, cor);
+    console.log(tarefas.length);
+    if (listName.length < 1 || tarefas[0].length < 1) {
+      return  toast.warn("Há campos não preenchidos", {
+        position: toast.POSITION.TOP_RIGHT
+      });
+
+    } else {
+      storage.setTask(listName, calendar, tarefas, cor);
+    }
   }
   return (
     <div className={`${style} container-new`} style={styles}>
+      <ToastContainer
+      
+      />
       <div className="container-second">
         <label>Nome da Lista</label>
         <input

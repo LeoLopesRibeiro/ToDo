@@ -14,6 +14,7 @@ export default function Home() {
     <div className="container-home">
       <Modal style={modal ? `slide-right ${active}` : `slide-left ${active}`} />
       <div className="responsive">
+      
         <div
           className="click"
           onClick={() => {
